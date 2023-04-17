@@ -41,6 +41,14 @@ const userSchema = new Schema({
         type: String,
         required : false
     },
+    dislike_count:{
+        type: Number,
+        required: false
+    },
+    like_count:{
+        type: Number,
+        required: false
+    }
     
 }, {timestamps: true})
 
