@@ -8,15 +8,12 @@ const testRoutes = require('./routes/test');
 
 require("dotenv").config();
 
-
 const path = require('path');
-const server = express();
-
 //app
-
-server.use(express.static("public"))
-server.use(express.json())
-server.use(express.urlencoded({extended: true}))
+const app = express();
+app.use(express.static("public"))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 //db
 mongoose.connect(process.env.MONGO_URI, {
@@ -24,31 +21,31 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
 })
 .then (() => {
-    server.listen(port, () => console.log(`server is running on port ${port} and DB is Connected`));
+     app.listen(port, () => console.log(`server is running on port ${port} and DB is Connected`));
 })
 .catch((err) => console.log('DB CONNECTION ERROR', err));
 
 // middleware
-server.use(express.json())
+app.use(express.json())
 
-server.use((req,res,next) => {
+app.use((req,res,next) => {
     console.log(req.path, req.method)
     next()
 })
-server.use(morgan("dev"));
-server.use(cors({origin: true, credentials: true}));
+app.use(morgan("dev"));
+app.use(cors({origin: true, credentials: true}));
 
 //routes
-server.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
-server.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-server.get('/', (req,res) =>{
+app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })
 
-server.use("/api/test", testRoutes);
+app.use("/api/test", testRoutes);
  
 
 
