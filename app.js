@@ -7,8 +7,8 @@ const cors = require("cors");
 const testRoutes = require('./routes/test');
 
 require("dotenv").config();
-
 const path = require('path');
+
 //app
 const app = express();
 app.use(express.static("public"))
@@ -36,11 +36,12 @@ app.use(morgan("dev"));
 app.use(cors({origin: true, credentials: true}));
 
 //routes
+/*
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
+  }); */
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })
