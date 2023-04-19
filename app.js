@@ -37,10 +37,10 @@ app.use(cors({origin: true, credentials: true}));
 
 //routes
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../TheArmoryFrontend/public')));
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+    res.sendFile(path.join(__dirname, '../TheArmoryFrontend/public', 'index.html'));
   }); 
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
