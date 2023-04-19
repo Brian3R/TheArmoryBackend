@@ -35,10 +35,10 @@ app.use(morgan("dev"));
 app.use(cors({origin: true, credentials: true}));
 
 //routes
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/build', 'index.html'));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
