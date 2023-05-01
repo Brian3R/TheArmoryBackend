@@ -8,4 +8,4 @@
  # Dependencies
  * Users should have node.js and npm install in the directory
  * Users should use command npm i express mongoose morgan cors dotenv nodemon
- * The command to run the code is npm run dev or npm start
+ # The command to run the code is npm run dev or npm start
